@@ -1,0 +1,12 @@
+[user]
+	name = James Robinson
+	email = jamesr@chromium.org
+[core]
+	autocrlf = false
+	filemode = false
+[bugzilla]
+	username = jamesr@chromium.org
+[color]
+	ui = auto
+[push]
+	default = simple
