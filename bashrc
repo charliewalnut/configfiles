@@ -74,14 +74,21 @@ fi
 export PATH=$DEPOTTOOLSDIR:$CHROMEDIR/third_party/llvm-build/Release+Asserts/bin:./Tools/Scripts:$PATH
 
 export PATH="$HOME/bin:$PATH"
+export PATH="$HOME/gsutil:$PATH"
+#export GYP_CHROMIUM_NO_ACTION=1
+
+function android_shell() {
+    . build/android/envsetup.sh;
+    export CHROMIUM_OUT_DIR=out_android;
+    export PS1="${debian_chroot:+($debian_chroot)}\u@\h:\w (ANDROID)\$ ";
+    export GYP_DEFINES="$GYP_DEFINES use_goma=1";
+    alias gencfgs="time ./build/gyp_chromium -Goutput_dir=out_android";
+    alias an="time ninja -C out_android/Debug -j${GOMAJ:-50}";
+    alias anr="time ninja -C out_android/Release -j${GOMAJ:-50}";
+}
 
 # go stuff
 export PATH="$PATH:$GOPATH/bin"
 export GOARCH=amd64
 export GOOS=linux
-
-# for ninja
-export GYP_GENERATORS='ninja'
-export GYP_DEFINES='disable_nacl=1 clang=1'
-export CC='clang'
-export CXX='clang++'
+export GOPATH="$HOME/gocode"

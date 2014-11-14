@@ -10,3 +10,9 @@
 	ui = auto
 [push]
 	default = simple
+[merge]
+	conflictstyle = diff3
+[rerere]
+	enable = 1
+[pull]
+	rebase = true
